@@ -1,0 +1,8 @@
+Instructions For this entire MERN stack notebook application
+
+
+
+Important considerable notes :- 
+-> Idealy backend folder which contain express web framework files is sperated from created react app but as it is a beginning we create backend folder inside react app 
+
+
