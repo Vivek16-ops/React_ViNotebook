@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import auth from './routes/auth.js'
 import notes from './routes/notes.js'
 const app = express()
-const port = 3000
+const port = 5000
 
 //connecting to the mongoDb
 await mongoose.connect('mongodb://127.0.0.1:27017/ViNotebook');

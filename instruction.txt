@@ -1,8 +1,16 @@
 Instructions For this entire MERN stack notebook application
 
 
-
 Important considerable notes :- 
 -> Idealy backend folder which contain express web framework files is sperated from created react app but as it is a beginning we create backend folder inside react app 
 
+Backend Progress 
+
+Create User Process 
+-> First I setup Diiferent Endpoints , Routers and Models 
+-> Then I Connect our express app to the mongodb with the help of the mongoose package 
+-> After that I use one Middle ware called app.use(express.use) to catch the jsopn request from the client side ... At Initial i created json  in postman and send to /createuser POST request 
+-> After that I Added one package express validator to validate whether the user data is comming in the correct format or not 
+-> Then I Create logic for ensuring the email recieved by the client is unique 
+-> 
 
