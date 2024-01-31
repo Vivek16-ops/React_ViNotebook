@@ -4,14 +4,10 @@ import { body, validationResult } from "express-validator"
 import bcrypt, { compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import fetchuser from '../middleware/Fetchuser.js'
-import bodyParser from 'body-parser';
 const router = express.Router()
 
 //Handles incoming json
 router.use(express.json())
-
-// Ensure body-parser is configured
-router.use(bodyParser.json());
 
 //Secret Key For Tokens
 let privateKey = "VivekIsGoodBoy"
