@@ -4,10 +4,14 @@ import { body, validationResult } from "express-validator"
 import bcrypt, { compare } from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import fetchuser from '../middleware/Fetchuser.js'
+import bodyParser from 'body-parser';
 const router = express.Router()
 
 //Handles incoming json
 router.use(express.json())
+
+// Ensure body-parser is configured
+router.use(bodyParser.json());
 
 //Secret Key For Tokens
 let privateKey = "VivekIsGoodBoy"
@@ -68,11 +72,11 @@ router.post('/createuser', [
         }
     } catch (error) {
         console.error(error.message)
-        res.status(500).json({ error: "Internal Server Error" })
+        res.status(500).json({ error: "Internal Server Error auth.js" })
     }
 })
 
-//Routr 2:Login a user using user crednetials
+//Router 2:Login a user using user crednetials
 router.post('/login', [
     // Express Validator Implementation and Syntax 
     body('email', 'Invalid Email').isEmail(),
@@ -112,7 +116,7 @@ router.post('/login', [
         res.send({ authtoken })
     } catch (error) {
         console.error(error.message)
-        res.status(500).json({ error: "Internal Sever Error" })
+        res.status(500).json({ error: "Internal Sever Error auth.js" })
     }
 })
 
@@ -124,7 +128,7 @@ router.post('/getuser', fetchuser, async (req, res) => {
         res.send({ user })
     } catch (error) {
         console.error(error.message)
-        res.status(500).json({ error: "Internal Sever Error" })
+        res.status(500).json({ error: "Internal Sever Error auth.js" })
     }
 })
 

@@ -4,7 +4,7 @@ import jwt, { decode } from 'jsonwebtoken';
 let privateKey = "VivekIsGoodBoy"
 
 const fetchuser = (req, res, next) => {
-    let token = req.header("auth_token")
+    let token = req.header("authtoken")
 
     if (!token) {
         res.status(401).send({ error: "Please Auhtentictae using valid tokens" })
