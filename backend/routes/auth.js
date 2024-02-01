@@ -109,7 +109,7 @@ router.post('/login', [
             }
         }
         let authtoken = jwt.sign(data, privateKey)
-        res.send({ authtoken })
+        res.json({ authtoken })
     } catch (error) {
         console.error(error.message)
         res.status(500).json({ error: "Internal Sever Error auth.js" })
@@ -121,7 +121,7 @@ router.post('/getuser', fetchuser, async (req, res) => {
     try {
         let user_id = req.user.id;
         const user = await User.findById(user_id).select("-password")
-        res.send({ user })
+        res.send(user)
     } catch (error) {
         console.error(error.message)
         res.status(500).json({ error: "Internal Sever Error auth.js" })

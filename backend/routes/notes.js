@@ -19,7 +19,6 @@ router.get('/fetchnote', fetchuser, async (req, res) => {
     }
 })
 
-
 // Routes 2: Adding a notes endpoints using POST 
 router.post('/addingnotes', fetchuser, [
     body('title', 'Title is short to handle').isLength({ min: 3 }),
@@ -74,7 +73,6 @@ router.put('/updatenotes/:id', fetchuser, async (req, res) => {
         res.status(500).json({ error: "Internal Sever Error notes.js" })
     }
 })
-
 
 // ROUTE 4: Delete an existing Note using: DELETE
 router.delete('/deletenote/:id', fetchuser, async (req, res) => {

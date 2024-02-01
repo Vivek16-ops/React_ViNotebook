@@ -1,4 +1,4 @@
-import jwt, { decode } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 //Secret Key For Tokens
 let privateKey = "VivekIsGoodBoy"
@@ -12,8 +12,8 @@ const fetchuser = (req, res, next) => {
 
     // Retrieving the ID from jwt tokens
     try {
-        let decoded = jwt.verify(token, privateKey);
-        req.user = decoded.user;
+        let data = jwt.verify(token, privateKey);
+        req.user = data.user;
         next()
     } catch (err) {
         res.status(401).send({ error: "Please Auhtentictae using valid tokens" })
