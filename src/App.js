@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './cpmponents/Navbar';
 import Home from './cpmponents/Home';
 import About from './cpmponents/About';
+import NoteState from './context/notes/NoteState';
 import {
   BrowserRouter as Router,
   Route,
@@ -11,14 +12,16 @@ import {
 function App() {
   return (
     <>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/home" element={<Home />} />
-          <Route exact path="/about" element={<About />} />
-        </Routes>
-      </Router>
+      <NoteState>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/home" element={<Home />} />
+            <Route exact path="/about" element={<About />} />
+          </Routes>
+        </Router>
+      </NoteState>
     </>
   );
 }
