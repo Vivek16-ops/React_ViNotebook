@@ -12,6 +12,7 @@ const Notesitem = (props) => {
                         <i className="far fa-edit mx-2"></i>
                     </div>
                     <p className="card-text">{note.description}</p>
+                    <p className="card-text">{note.tag}</p>
                 </div>
             </div>
         </div>
