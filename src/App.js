@@ -8,6 +8,7 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import Alert from './cpmponents/Alert';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
+          <Alert message={"This is very good website"}/>
           <div className="container">
             <Routes>
               <Route exact path="/" element={<Home />} />

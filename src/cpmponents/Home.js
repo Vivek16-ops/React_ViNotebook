@@ -1,4 +1,5 @@
 import React from 'react'
+import Notes from './Notes'
 
 const Home = () => {
   return (
@@ -19,11 +20,10 @@ const Home = () => {
             <input type="checkbox" className="form-check-input" id="exampleCheck1" />
             <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
           </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className="btn btn-primary mt-2">Submit</button>
         </form>
-        <h1>Your Notes</h1>
+        <Notes />
       </div>
-
     </div>
   )
 }
