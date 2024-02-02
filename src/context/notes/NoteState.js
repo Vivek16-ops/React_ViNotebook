@@ -52,12 +52,15 @@ const NoteState = (props) => {
     }
 
     //Delete a note
-    let deleteNotes = () => {
-
+    let deleteNotes = (id) => {
+        //TODO - API Call
+        console.log("Delete Function Initiated")
+        let newNotes = notes.filter((note) => note._id !== id);
+        setnotes(newNotes)
     }
 
     //Update a note
-    let updateNootes = () => {
+    let updateNootes = (id, title, description, tag) => {
 
     }
     return (
