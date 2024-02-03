@@ -5,7 +5,7 @@ import noteContext from '../context/notes/NoteContext'
 const Addnote = () => {
     const context = useContext(noteContext)
     const { addNotes } = context
-    const [note, setNote] = useState({ title: "", description: "", tag: "default" })
+    const [note, setNote] = useState({ title: "", description: "", tag: "" })
 
     const handleclick = (e) => {
         e.preventDefault();//As using state the component usually re-render but this function stops the page for re-rendering
@@ -25,13 +25,15 @@ const Addnote = () => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Description</label>
-                    <input type="text" className="form-control" id="description" placeholder="Enter Description" name="description"  onChange={onchange} />
+                    <textarea className="form-control" id="description" placeholder="Enter Description" name="description"  onChange={onchange} />
                 </div>
-                <div className="form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className="form-check-label" htmlFor="exampleCheck1">Tag</label>
+
+                <div className="form-group">
+                    <label htmlFor="tag">Tags</label>
+                    <input type="text" className="form-control" id="tag" placeholder="Specify Tag" name="tag"  onChange={onchange} />
                 </div>
-                <button type="submit" className="btn btn-primary mt-2" onClick={handleclick}>Submit</button>
+                
+                <button type="submit" className="btn btn-primary mt-2" onClick={handleclick}>Add Note</button>
             </form>
         </>
     )
