@@ -40,3 +40,9 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Glimpse of Software
+
+![first](https://github.com/Vivek16-ops/React_ViNotebook/assets/78420856/896e9fdb-54c6-431a-bc4c-607bbea3d862)
+![second](https://github.com/Vivek16-ops/React_ViNotebook/assets/78420856/c8ad1b33-d8cb-4d4a-bac0-96f3efddfd5b)
+![third](https://github.com/Vivek16-ops/React_ViNotebook/assets/78420856/92ea49a3-ea3c-4ca7-abbe-8cf2fa34e7cf)
+
+
