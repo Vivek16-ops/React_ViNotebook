@@ -46,5 +46,9 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 ![third](https://github.com/Vivek16-ops/React_ViNotebook/assets/78420856/92ea49a3-ea3c-4ca7-abbe-8cf2fa34e7cf)
 ![fourth](https://github.com/Vivek16-ops/React_ViNotebook/assets/78420856/1ae0ed4e-b654-42b4-98cc-0abdf4908e01)
 
+## Database Entry 
+![first](https://github.com/Vivek16-ops/React_ViNotebook/assets/78420856/6c0bd4d5-2665-4e1b-a8e3-547081b7a2b9)
+![second](https://github.com/Vivek16-ops/React_ViNotebook/assets/78420856/f6381bab-8c6c-41cd-8cc2-8ca349ef2c23)
+
 
 
