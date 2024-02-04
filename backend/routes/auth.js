@@ -28,18 +28,18 @@ router.post('/createuser', [
     body('password', 'To short password').isLength({ min: 5 }),
 ], async (req, res) => {
 
+    let success = false
     //If there are error with validation of above credential, return bad request and error
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() })
+        return res.status(400).json({ success, errors: errors.array() })
     }
 
     try {
-
         // check whether the user with same email exist already 
         let user = await User.findOne({ email: req.body.email })
         if (user) {
-            return res.status(400).json({ error: "User already exist with this email" })
+            return res.status(400).json({ success, error: "User already exist with this email" })
         }
         else {
 
@@ -63,8 +63,9 @@ router.post('/createuser', [
                     id: user.id
                 }
             }
+            success = true
             let authtoken = jwt.sign(data, privateKey)
-            res.send({ authtoken })
+            res.send({success, authtoken })
         }
     } catch (error) {
         console.error(error.message)

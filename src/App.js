@@ -11,21 +11,30 @@ import {
   Routes
 } from "react-router-dom";
 import Alert from './cpmponents/Alert';
+import { useState } from 'react';
 
 function App() {
+  const [alert, setalert] = useState(null)
+
+  const showAlert = (message, type) => {
+      setalert({message:message,type:type})
+      setTimeout(()=>{
+        setalert(null)
+      },1500)
+  };
   return (
     <>
-      <NoteState>
+      <NoteState showAlert={showAlert}>
         <Router>
           <Navbar />
-          <Alert message={"This is very good website"}/>
+          <Alert alert={alert}/>
           <div className="container">
             <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/home" element={<Home />} />
-              <Route exact path="/about" element={<About />} />
-              <Route exact path="/login" element={<Login />} />
-              <Route exact path="/signUp" element={<SignUp />} />
+              <Route exact path="/" element={<Home showAlert={showAlert} />} />
+              <Route exact path="/home" element={<Home showAlert={showAlert}/>} />
+              <Route exact path="/about" element={<About/>} />
+              <Route exact path="/login" element={<Login showAlert={showAlert}/>} />
+              <Route exact path="/signUp" element={<SignUp showAlert={showAlert}/>} />
             </Routes>
           </div>
         </Router>

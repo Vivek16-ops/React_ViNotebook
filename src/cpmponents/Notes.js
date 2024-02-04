@@ -3,7 +3,8 @@ import noteContext from '../context/notes/NoteContext'
 import Notesitem from './Notesitem'
 import Addnote from './Addnote'
 
-const Notes = () => {
+const Notes = (props) => {
+    const {showAlert} = props
     let context = useContext(noteContext)
     const { notes, getAllNotes, modifyNotes } = context
     const [note, setnote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
@@ -22,6 +23,7 @@ const Notes = () => {
     const handleClick = (e) => {
         ref.current.click()
         modifyNotes(note.id, note.etitle, note.edescription, note.etag)
+        showAlert("Notes has been updated","success")
     }
 
 
@@ -33,7 +35,7 @@ const Notes = () => {
         <>
             <div className="container my-3">
                 <div className="row my-3">
-                    <Addnote />
+                    <Addnote showAlert={showAlert}/>
                     <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Launch demo modal
                     </button>

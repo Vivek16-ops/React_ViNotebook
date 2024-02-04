@@ -4,6 +4,7 @@ import NoteContext from "./NoteContext";
 const NoteState = (props) => {
     let host = "http://localhost:5000"
     const [notes, setnotes] = useState([])
+    const{showAlert} = props
 
     let getAllNotes = async () => {
         //Adding the API Call
@@ -35,6 +36,7 @@ const NoteState = (props) => {
         //For Frontend update
         const json = await response.json()
         setnotes(notes.concat(json))
+        showAlert("Notes has been added","success")
     }
 
     //Delete a note
@@ -51,6 +53,7 @@ const NoteState = (props) => {
         //For FrontEnd Update
         let newNote = notes.filter((note) => note._id !== id);
         setnotes(newNote)
+        showAlert("Notes has been deleted","danger")
     }
 
     //Update a note

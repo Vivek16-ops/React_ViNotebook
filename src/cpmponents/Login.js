@@ -1,10 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react'
-import { useHistory } from "react-router-dom";
-const Login = () => {
+const Login = (props) => {
     let host = "http://localhost:5000"
     const [credential, setcredential] = useState({ email: "", password: "" })
+    let navigate = useNavigate();
+    const{showAlert} = props
 
-    let history = useHistory();
     let handlerequest = async (e) => {
         e.preventDefault() // To Stop the page for reloading
         //API Call
@@ -17,12 +18,15 @@ const Login = () => {
         });
 
         let json = await response.json()
-        if(json.success == true)
+        if(json.success === true)
         {
             //save the auht-token and redirect to the home page
-            history.push("/");
+            localStorage.setItem('token',json.authtoken)
+            showAlert("You have successfully login","success")
+            navigate('/');
+
         }else{
-            alert("Invalid Credential")
+            showAlert("Wrong Email and Password","danger")
         }
     }
 
@@ -32,6 +36,7 @@ const Login = () => {
 
     return (
         <div>
+            <h1>Login</h1>
             <form onSubmit={handlerequest}>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Email address</label>
