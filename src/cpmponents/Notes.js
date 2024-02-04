@@ -2,14 +2,16 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/notes/NoteContext'
 import Notesitem from './Notesitem'
 import Addnote from './Addnote'
+import { useNavigate } from "react-router-dom";
 
 const Notes = (props) => {
-    const {showAlert} = props
+    const { showAlert } = props
     let context = useContext(noteContext)
     const { notes, getAllNotes, modifyNotes } = context
     const [note, setnote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
     const ref = useRef(null)
     const refClose = useRef(null)
+    const navigate = useNavigate();
 
     const updatesNotes = (currentNote) => {
         setnote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
@@ -23,19 +25,23 @@ const Notes = (props) => {
     const handleClick = (e) => {
         ref.current.click()
         modifyNotes(note.id, note.etitle, note.edescription, note.etag)
-        showAlert("Notes has been updated","success")
+        showAlert("Notes has been updated", "success")
     }
 
 
     useEffect(() => {
-        getAllNotes()
+        if (localStorage.getItem('token')) {
+            getAllNotes()
+        }else{
+           navigate('/login')
+        }
         // eslint-disable-next-line
     }, []);
     return (
         <>
             <div className="container my-3">
                 <div className="row my-3">
-                    <Addnote showAlert={showAlert}/>
+                    <Addnote showAlert={showAlert} />
                     <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Launch demo modal
                     </button>
@@ -63,7 +69,7 @@ const Notes = (props) => {
                                     </form>
                                 </div>
                                 <div className="modal-footer">
-                                    <button disabled={note.etitle.length<=5 || note.edescription.length<=5 || note.etag.length<=3} ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button disabled={note.etitle.length <= 5 || note.edescription.length <= 5 || note.etag.length <= 3} ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button onClick={handleClick} type="button" className="btn btn-primary" >Update Note</button>
                                 </div>
                             </div>

@@ -5,6 +5,10 @@ const Navbar = () => {
     // React.useEffect(() => {
     //     console.log(location.pathname)
     // }, [location]);
+
+    const logouthandle = () => {
+        localStorage.removeItem('token')
+    }
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
@@ -21,8 +25,8 @@ const Navbar = () => {
                             <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">About</Link>
                         </li>
                     </ul>
-                    <Link className="btn btn-success mx-1" to="/login" role="button">Login</Link>
-                    <Link className="btn btn-warning mx-1" to="/signUp" role="button">SignUp</Link>
+                    {!localStorage.getItem('token') ? <><Link className="btn btn-success mx-1" to="/login" role="button">Login</Link>
+                        <Link className="btn btn-warning mx-1" to="/signUp" role="button">SignUp</Link></> : <Link className="btn btn-danger mx-1" to="/login" role="button" onClick={logouthandle}>logout</Link>}
                 </div>
             </div>
         </nav>
