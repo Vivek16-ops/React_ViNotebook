@@ -79,6 +79,8 @@ router.post('/login', [
     body('password', 'Password cannot be blank').exists(),
 ], async (req, res) => {
 
+    let success = false;
+
     //If there are error with validation of email and password, return bad request and error
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -92,14 +94,16 @@ router.post('/login', [
         // Finding if user exist in the database or not
         let user = await User.findOne({ email })
         if (!user) {
-            return res.status(400).json({ error: "Please Enter Valid Credential" })
+            success = false
+            return res.status(400).json({ success, error: "Please Enter Valid Credential" })
         }
 
         //Comparing password with the hash key : It returns either true or false
         const comparepassword = await bcrypt.compare(password, user.password)
 
         if (!comparepassword) {
-            return res.status(400).json({ error: "Please Enter Valid Credential" })
+            success = false
+            return res.status(400).json({ success, error: "Please Enter Valid Credential" })
         }
 
         // Lastly send JWT Tokens
@@ -108,8 +112,9 @@ router.post('/login', [
                 id: user.id
             }
         }
+        success = true
         let authtoken = jwt.sign(data, privateKey)
-        res.json({ authtoken })
+        res.json({ success, authtoken })
     } catch (error) {
         console.error(error.message)
         res.status(500).json({ error: "Internal Sever Error auth.js" })

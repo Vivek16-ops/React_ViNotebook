@@ -12,16 +12,16 @@ const NoteState = (props) => {
             headers: {
                 "Content-Type": "application/json",
                 "authtoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjViYjVkNGI5MjViZTBjYjFiY2I5YWYzIn0sImlhdCI6MTcwNjc3OTM2Mn0.4d0vxNCfx4pALDp2AWFigs2s7HJfcRS-4cuRdQ8bokQ"
-            },
+            }
         });
+
+        //For FrontEnd update
         const json = await response.json()
-        console.log(json)
         setnotes(json)
     }
 
     // Add a note
     let addNotes = async (title, description, tag) => {
-        console.log("Adding a note function is calling")
         //Adding the API Call
         const response = await fetch(`${host}/api/notes/addingnotes`, {
             method: "POST",
@@ -31,6 +31,8 @@ const NoteState = (props) => {
             },
             body: JSON.stringify({ title, description, tag })
         });
+
+        //For Frontend update
         const json = await response.json()
         setnotes(notes.concat(json))
     }
@@ -46,6 +48,7 @@ const NoteState = (props) => {
             },
         });
 
+        //For FrontEnd Update
         let newNote = notes.filter((note) => note._id !== id);
         setnotes(newNote)
     }
@@ -62,17 +65,18 @@ const NoteState = (props) => {
             body: JSON.stringify({ title, description, tag })
         });
 
-        for(let i=0;i<notes.length;i++)
-        {
-            const element = notes[i]
-            if(element.id === id)
-            {
-                element.title=title
-                element.description=description
-                element.tag = tag
+        //For FrontEnd Update
+        let newNotes = JSON.parse(JSON.stringify(notes))
+        for (let index = 0; index < newNotes.length; index++) {
+            const element = newNotes[index];
+            if (element._id === id) {
+                element.title = title;
+                element.description = description;
+                element.tag = tag; 
+                break; 
             }
         }
-        setnotes(notes)
+        setnotes(newNotes);
     }
     return (
         <NoteContext.Provider value={{ notes, getAllNotes, addNotes, deleteNotes, modifyNotes }}>

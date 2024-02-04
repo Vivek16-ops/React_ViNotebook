@@ -8,10 +8,11 @@ const Notes = () => {
     const { notes, getAllNotes, modifyNotes } = context
     const [note, setnote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
     const ref = useRef(null)
+    const refClose = useRef(null)
 
     const updatesNotes = (currentNote) => {
-        ref.current.click()
         setnote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
+        ref.current.click()
     }
 
     const onChange = (e) => {
@@ -19,9 +20,8 @@ const Notes = () => {
     }
 
     const handleClick = (e) => {
-        console.log("Updating the note...", note)
+        ref.current.click()
         modifyNotes(note.id, note.etitle, note.edescription, note.etag)
-        // e.preventDefault();
     }
 
 
@@ -58,17 +58,19 @@ const Notes = () => {
                                             <label htmlFor="tag" className="form-label">Tag</label>
                                             <input type="text" className="form-control" id="etag" name="etag" value={note.etag} onChange={onChange} />
                                         </div>
-
                                     </form>
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button disabled={note.etitle.length<=5 || note.edescription.length<=5 || note.etag.length<=3} ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                     <button onClick={handleClick} type="button" className="btn btn-primary" >Update Note</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <h1>Your Notes</h1>
+                    <div className="container">
+                        <h1>Your Notes</h1>
+                        {notes.length <= 0 && <span>No Notes To Preview</span>}
+                    </div>
                     {notes.map((note) => {
                         return <Notesitem key={note._id} updateNotes={updatesNotes} note={note} />
                     })}
