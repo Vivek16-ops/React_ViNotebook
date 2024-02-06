@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# ViNotebook - React Notebook App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ViNotebook is a MERN (MongoDB, Express.js, React.js, Node.js) application designed to provide a secure and personalized note-taking experience. With ViNotebook, users can create an account, log in securely, and manage their notes with ease.
+
+## Features
+* __Secure Authentication:__ ViNotebook employs JWT (JSON Web Tokens) for secure authentication, ensuring that user data remains protected. Additionally, the bcrypt package is utilized to hash sensitive information, enhancing security measures.
+*  __Personalized Note Management:__ Each user has exclusive access to their notes, ensuring privacy and confidentiality. Users can create, delete, modify, and read their notes seamlessly.
+
+## Technology Stack
+
+* __Frontend:__ Developed using React.js for a dynamic and responsive user interface.
+* __Backend:__ Built with Node.js and Express.js, providing robust server-side functionality.
+* __Database:__ MongoDB is utilized, with two collections:
+  * __User Collection:__ Stores user signup information.
+  * __Notes Collection:__ Stores corresponding user notes.
+  
+## Security Measures
+* __Data Hashing:__ ViNotebook employs hashing techniques to secure sensitive user information, preventing unauthorized access or compromise
+*  __JWT Tokens:__ JSON Web Tokens are used for secure authentication, enhancing data protection during user sessions.
 
 ## Available Scripts
 
